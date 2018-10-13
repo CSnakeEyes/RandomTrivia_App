@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="lightBlue">#1ad1ff</color>
+    <color name="blue">#66b3ff</color>
+    <color name="darkblue">#004080</color>
+    <color name="orange">#ffcc00</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="lightOrange">#fff0b3</color>
+    <color name="darkGreen">#006622</color>
+    <color name="lightGreen">#99ffbb</color>
+    <color name="darkRed">#800000</color>
+    <color name="lightRed">#ff9999</color>
 </resources>
