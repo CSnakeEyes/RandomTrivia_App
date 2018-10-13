@@ -14,6 +14,19 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.flashcardQ1_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                findViewById(R.id.flashcardA_tv).setVisibility(View.VISIBLE);
+                findViewById(R.id.flashcardQ1_tv).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashcardA1_tv).setBackgroundColor(getResources().getColor(R.color.lightOrange));
+                findViewById(R.id.flashcardA2_tv).setBackgroundColor(getResources().getColor(R.color.lightOrange));
+                findViewById(R.id.flashcardA3_tv).setBackgroundColor(getResources().getColor(R.color.lightOrange));
+            }
+        });
+
+        findViewById(R.id.flashcardA_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.flashcardA_tv).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashcardQ1_tv).setVisibility(View.VISIBLE);
                 findViewById(R.id.flashcardA1_tv).setBackgroundColor(getResources().getColor(R.color.lightOrange));
                 findViewById(R.id.flashcardA2_tv).setBackgroundColor(getResources().getColor(R.color.lightOrange));
                 findViewById(R.id.flashcardA3_tv).setBackgroundColor(getResources().getColor(R.color.lightOrange));
