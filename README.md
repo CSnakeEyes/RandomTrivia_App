@@ -4,7 +4,7 @@
 This app can display a random question along with some answers. Whenever you click one of the answers it tells you whether is right.
 
 ### App Walk-though
-<img src="http://g.recordit.co/ySMmbXPOsM.gif" width=200><br>
+<img src="http://g.recordit.co/xe9sYIlTn4.gif" width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
