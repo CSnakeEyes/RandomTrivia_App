@@ -6,4 +6,11 @@
     <string name="answer3">George H. W. Bush</string>
     <string name="toggleOn">Toggle On</string>
     <string name="toggleOff">Toggle Off</string>
+    <string name="save_btn">Save Button</string>
+    <string name="edit_btn">Edit Button</string>
+    <string name="cancel_btn">Cancel Button</string>
+    <string name="create_btn">Create Button</string>
+    <string name="write_new_question">Write a new question here</string>
+    <string name="write_correct_answer">Write the correct answer here</string>
+    <string name="write_wrong_answer">Write a wrong answer here</string>
 </resources>

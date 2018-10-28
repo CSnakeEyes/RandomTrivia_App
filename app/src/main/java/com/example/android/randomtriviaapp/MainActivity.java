@@ -1,8 +1,10 @@
 package com.example.android.randomtriviaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,5 +79,43 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.flashcardA3_tv).setVisibility(View.VISIBLE);
             }
         });
+
+        findViewById(R.id.create_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NewCardActivity.class);
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
+
+        findViewById(R.id.edit_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String question = ((TextView) findViewById(R.id.flashcardQ1_tv)).getText().toString();
+                String correctAnswer = ((TextView) findViewById(R.id.flashcardA_tv)).getText().toString();
+                String wrongAnswerOne = ((TextView) findViewById(R.id.flashcardA2_tv)).getText().toString();
+                String wrongAnswerTwo = ((TextView) findViewById(R.id.flashcardA3_tv)).getText().toString();
+
+                Intent intent = new Intent(MainActivity.this, NewCardActivity.class);
+                intent.putExtra("question", question);
+                intent.putExtra("answer", correctAnswer);
+                intent.putExtra("wrongOne", wrongAnswerOne);
+                intent.putExtra("wrongTwo", wrongAnswerTwo);
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100 && resultCode == RESULT_OK){
+            ((TextView) findViewById(R.id.flashcardQ1_tv)).setText(data.getExtras().getString("question"));
+            ((TextView) findViewById(R.id.flashcardA_tv)).setText(data.getExtras().getString("ans"));
+            ((TextView) findViewById(R.id.flashcardA1_tv)).setText(data.getExtras().getString("ans"));
+            ((TextView) findViewById(R.id.flashcardA2_tv)).setText(data.getExtras().getString("wrongOne"));
+            ((TextView) findViewById(R.id.flashcardA3_tv)).setText(data.getExtras().getString("wrongTwo"));
+        }
     }
 }

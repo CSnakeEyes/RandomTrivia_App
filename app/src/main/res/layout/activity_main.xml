@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/answer2"
+        android:text="@string/answer3"
         android:textSize="30sp"
         android:textStyle="normal"
         android:layout_below="@id/flashcardQ1_tv"
@@ -95,4 +95,22 @@
         android:visibility="invisible"
         android:contentDescription="@string/toggleOn"/>
 
+    <ImageView
+        android:id="@+id/create_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignEnd="@+id/flashcardQ1_tv"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/create_btn"
+        android:src="@drawable/create_new"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/edit_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/flashcardQ1_tv"
+        android:contentDescription="@string/edit_btn"
+        android:src="@drawable/edit" />
 </RelativeLayout>

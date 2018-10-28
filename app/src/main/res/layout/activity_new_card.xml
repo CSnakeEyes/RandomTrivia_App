@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewCardActivity">
+
+    <EditText
+        android:id="@+id/question_et"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:hint="@string/write_new_question" />
+
+    <EditText
+        android:id="@+id/correct_answer_et"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/question_et"
+        android:hint="@string/write_correct_answer" />
+
+    <EditText
+        android:id="@+id/incorrect_answerone_et"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/correct_answer_et"
+        android:hint="@string/write_wrong_answer" />
+
+    <EditText
+        android:id="@+id/incorrect_answertwo_et"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/incorrect_answerone_et"
+        android:hint="@string/write_wrong_answer" />
+
+    <ImageView
+        android:id="@+id/cancel_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignEnd="@+id/question_et"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/cancel_btn"
+        android:src="@drawable/cancel_changes" />
+
+    <ImageView
+        android:id="@+id/save_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/question_et"
+        android:contentDescription="@string/save_btn"
+        android:src="@drawable/upload_changes" />
+
+</RelativeLayout>
