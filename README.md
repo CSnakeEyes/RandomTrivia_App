@@ -7,7 +7,7 @@ The app allows the user to modify anb create a question along with its answers.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="http://g.recordit.co/pHAlQu7cSt.gif" width=200><br>
 
 ## Required
 - [X] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
@@ -22,7 +22,7 @@ The app allows the user to modify anb create a question along with its answers.
 - [ ] A notification is shown if the card was created successfully
 - [X] User can also enter multiple choice answers when creating a card
 - [ ] App is further styled and customized!
-
+YOUR_GIF_URL_HERE
 ## Lab 1
 
 ### App Description
