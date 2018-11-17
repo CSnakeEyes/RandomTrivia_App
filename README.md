@@ -1,5 +1,24 @@
 ## RandonTrivia App
 
+## Lab 3
+
+### App Description
+This app allows the user to create multiple flashcards with different questions and answers. Also, the user is able to navigate through each one of the created flashcards as well as delete any she/he may desire to.
+
+### App Walk-though
+
+<img src="http://g.recordit.co/Jt1dVUp95d.gif" width=200><br>
+
+## Required
+- [X] User can create a card and still see their created card when the app is relaunched.
+- [X] User can create muliple cards and browse through all created cards
+
+## Optional
+- [X] User can delete a card and no longer see it in their deck anymore
+- [ ] Flashcards are shown in random order instead of the order they were created in
+- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [X] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
 ## Lab 2
 
 ### App Description
@@ -19,10 +38,10 @@ The app allows the user to modify anb create a question along with its answers.
 ## Optional
 - [X] User can edit a card
 - [X] An error message is shown if the user doesn't enter both a Question and an Answer
-- [ ] A notification is shown if the card was created successfully
+- [X] A notification is shown if the card was created successfully
 - [X] User can also enter multiple choice answers when creating a card
-- [ ] App is further styled and customized!
-YOUR_GIF_URL_HERE
+- [X] App is further styled and customized!
+
 ## Lab 1
 
 ### App Description
