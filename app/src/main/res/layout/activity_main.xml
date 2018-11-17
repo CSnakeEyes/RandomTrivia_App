@@ -100,6 +100,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignEnd="@+id/flashcardQ1_tv"
+        android:layout_alignRight="@id/flashcardQ1_tv"
         android:layout_alignParentBottom="true"
         android:contentDescription="@string/create_btn"
         android:src="@drawable/create_new"
@@ -111,6 +112,26 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/flashcardQ1_tv"
+        android:layout_alignLeft="@id/flashcardQ1_tv"
         android:contentDescription="@string/edit_btn"
         android:src="@drawable/edit" />
+
+    <ImageView
+        android:id="@+id/next_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/flashcardA3_tv"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/edit_btn"
+        android:src="@drawable/next_card" />
+
+    <ImageView
+        android:id="@+id/delete_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/flashcardA3_tv"
+        android:layout_toLeftOf="@id/next_btn"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/edit_btn"
+        android:src="@drawable/delete_svg" />
 </RelativeLayout>

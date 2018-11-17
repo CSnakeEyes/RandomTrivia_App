@@ -2,16 +2,36 @@ package com.example.android.randomtriviaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private final int NEW_CARD_REQUEST_CODE = 100;
+
+    FlashcardDatabase flashcardDatabase;        // Creation of database using Room Library
+    List<Flashcard> allFlashcards;              // List of created flashcards
+    int currentCardDisplayedIndex = 0;          // Current flashcard displayed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+        allFlashcards = flashcardDatabase.getAllCards();
+
+        if (allFlashcards != null && allFlashcards.size() > 0) {
+            ((TextView) findViewById(R.id.flashcardQ1_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+            ((TextView) findViewById(R.id.flashcardA_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+            ((TextView) findViewById(R.id.flashcardA1_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+            ((TextView) findViewById(R.id.flashcardA2_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+            ((TextView) findViewById(R.id.flashcardA3_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+        }
 
         findViewById(R.id.flashcardQ1_tv).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +121,48 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("answer", correctAnswer);
                 intent.putExtra("wrongOne", wrongAnswerOne);
                 intent.putExtra("wrongTwo", wrongAnswerTwo);
-                MainActivity.this.startActivityForResult(intent, 100);
+                MainActivity.this.startActivityForResult(intent, NEW_CARD_REQUEST_CODE);
+            }
+        });
+
+        findViewById(R.id.next_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentCardDisplayedIndex++;
+
+                // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
+                if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
+                }
+
+                findViewById(R.id.flashcardA_tv).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashcardQ1_tv).setVisibility(View.VISIBLE);
+
+                ((TextView) findViewById(R.id.flashcardQ1_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                ((TextView) findViewById(R.id.flashcardA_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                ((TextView) findViewById(R.id.flashcardA1_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                ((TextView) findViewById(R.id.flashcardA2_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+                ((TextView) findViewById(R.id.flashcardA3_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
+            }
+        });
+
+        findViewById(R.id.delete_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcardQ1_tv)).getText().toString());
+                allFlashcards = flashcardDatabase.getAllCards();
+                currentCardDisplayedIndex++;
+
+                // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
+                if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
+                }
+
+                ((TextView) findViewById(R.id.flashcardQ1_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                ((TextView) findViewById(R.id.flashcardA_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                ((TextView) findViewById(R.id.flashcardA1_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                ((TextView) findViewById(R.id.flashcardA2_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer1());
+                ((TextView) findViewById(R.id.flashcardA3_tv)).setText(allFlashcards.get(currentCardDisplayedIndex).getWrongAnswer2());
             }
         });
     }
@@ -110,12 +171,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 100 && resultCode == RESULT_OK){
-            ((TextView) findViewById(R.id.flashcardQ1_tv)).setText(data.getExtras().getString("question"));
-            ((TextView) findViewById(R.id.flashcardA_tv)).setText(data.getExtras().getString("ans"));
-            ((TextView) findViewById(R.id.flashcardA1_tv)).setText(data.getExtras().getString("ans"));
-            ((TextView) findViewById(R.id.flashcardA2_tv)).setText(data.getExtras().getString("wrongOne"));
-            ((TextView) findViewById(R.id.flashcardA3_tv)).setText(data.getExtras().getString("wrongTwo"));
+        String question = data.getExtras().getString("question");
+        String correctAnswer = data.getExtras().getString("ans");
+        String wrongAnswerOne = data.getExtras().getString("wrongOne");
+        String wrongAnswerTwo = data.getExtras().getString("wrongTwo");
+
+        if(requestCode == NEW_CARD_REQUEST_CODE && resultCode == RESULT_OK){
+            ((TextView) findViewById(R.id.flashcardQ1_tv)).setText(question);
+            ((TextView) findViewById(R.id.flashcardA_tv)).setText(correctAnswer);
+            ((TextView) findViewById(R.id.flashcardA1_tv)).setText(correctAnswer);
+            ((TextView) findViewById(R.id.flashcardA2_tv)).setText(wrongAnswerOne);
+            ((TextView) findViewById(R.id.flashcardA3_tv)).setText(wrongAnswerTwo);
         }
+
+        flashcardDatabase.insertCard(new Flashcard(question, correctAnswer, wrongAnswerOne, wrongAnswerTwo));
+        allFlashcards = flashcardDatabase.getAllCards();
+
+        Snackbar.make(findViewById(R.id.flashcardQ1_tv),
+                "Card Successfully Created!",
+                Snackbar.LENGTH_SHORT)
+                .show();
     }
 }
